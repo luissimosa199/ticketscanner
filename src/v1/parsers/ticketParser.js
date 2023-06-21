@@ -1,11 +1,11 @@
 const { JSDOM } = require("jsdom");
+const fetch = require("node-fetch");
 
 // SCAN ONE BILL
 const scanNewDiscoTicket = async (ticketUrl) => {
   const url = ticketUrl;
 
   try {
-    
     const getData = async () => {
       const response = await fetch(url, {
         method: "GET",
@@ -36,13 +36,15 @@ const scanNewDiscoTicket = async (ticketUrl) => {
         const name = e.querySelector("td>div:nth-child(1)").textContent.trim();
 
         const quantity = parseFloat(
-          e.querySelector("td:nth-child(2)>div:nth-child(1)")
+          e
+            .querySelector("td:nth-child(2)>div:nth-child(1)")
             .textContent.trim()
             .replace(/,/g, ".")
         );
 
         const price = parseFloat(
-          e.querySelector("td:nth-child(3)>div:nth-child(1)")
+          e
+            .querySelector("td:nth-child(3)>div:nth-child(1)")
             .textContent.trim()
             .replace(/[^0-9.,]+/g, "")
             .replace(".", "")
@@ -50,7 +52,8 @@ const scanNewDiscoTicket = async (ticketUrl) => {
         );
 
         const total = parseFloat(
-          e.querySelector("td:nth-child(4)>div:nth-child(1)")
+          e
+            .querySelector("td:nth-child(4)>div:nth-child(1)")
             .textContent.trim()
             .replace(/[^0-9.,]+/g, "")
             .replace(".", "")
