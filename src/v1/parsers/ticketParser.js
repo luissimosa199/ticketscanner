@@ -5,6 +5,8 @@ const fetch = require("node-fetch");
 const scanNewDiscoTicket = async (ticketUrl) => {
   const url = ticketUrl;
 
+  console.log('Parser Reached...')
+
   try {
     const getData = async () => {
       const response = await fetch(url, {
@@ -75,6 +77,7 @@ const scanNewDiscoTicket = async (ticketUrl) => {
     const ticket = await getData();
     return ticket;
   } catch (error) {
+    console.log(error)
     throw { status: error?.status || 500, message: error?.message || error };
   }
 };
