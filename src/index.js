@@ -1,13 +1,13 @@
-import express from "express";
-import { app } from "express";
-import cors from "cors";
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
 const PORT = process.env.PORT || 5000;
 
 const v1TicketRouter = require("./v1/routes/ticketRoutes");
 
 // cors
-app.use(cors('*'));
+app.use(cors());
 // headers
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -22,7 +22,6 @@ app.use(cors('*'));
 //   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 //   res.sendStatus(200);
 // });
-
 // parse form data
 app.use(express.urlencoded({ extended: false }));
 // parse json

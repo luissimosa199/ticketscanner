@@ -1,5 +1,5 @@
-import { JSDOM } from "jsdom";
-import fetch from "node-fetch";
+const { JSDOM } = require("jsdom");
+const fetch = require("node-fetch");
 
 // SCAN ONE BILL
 const scanNewDiscoTicket = async (ticketUrl) => {
