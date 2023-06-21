@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 const v1TicketRouter = require("./v1/routes/ticketRoutes");
 
 // cors
-app.use(cors());
+app.use(cors('*'));
 // headers
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
