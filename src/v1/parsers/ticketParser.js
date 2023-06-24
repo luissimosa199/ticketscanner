@@ -1,7 +1,6 @@
 const { JSDOM } = require("jsdom");
-// const fetch = require("node-fetch");
 
-// SCAN ONE BILL
+// SCAN ONE TICKET
 const scanNewDiscoTicket = async (ticketUrl) => {
   const url = ticketUrl;
 
