@@ -1,4 +1,5 @@
 const { JSDOM } = require("jsdom");
+const fetch = require('node-fetch');
 
 // SCAN ONE TICKET
 const scanNewDiscoTicket = async (ticketUrl) => {
