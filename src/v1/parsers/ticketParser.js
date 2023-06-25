@@ -1,5 +1,5 @@
 const { JSDOM } = require("jsdom");
-const fetch = require('node-fetch');
+const axios = require('axios');
 
 // SCAN ONE TICKET
 const scanNewDiscoTicket = async (ticketUrl) => {
@@ -9,7 +9,7 @@ const scanNewDiscoTicket = async (ticketUrl) => {
 
   try {
     const getData = async () => {
-      const response = await fetch(url, {
+      const response = await axios(url, {
         method: "GET",
       });
 
