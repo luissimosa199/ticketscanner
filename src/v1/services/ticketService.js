@@ -1,10 +1,10 @@
 const Ticket = require("../parsers/ticketParser");
 
 // CREATE ONE Ticket
-const scanNewDiscoTicket = async (ticketUrl) => {
+const scanNewDiscoTicket = async (ticketData) => {
 
   try {
-    const scannedTicket = await Ticket.scanNewDiscoTicket(ticketUrl);
+    const scannedTicket = await Ticket.scanNewDiscoTicket(ticketData);
     return scannedTicket;
   } catch (error) {
     throw error;

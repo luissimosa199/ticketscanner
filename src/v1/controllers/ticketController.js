@@ -2,10 +2,10 @@ const ticketService = require("../services/ticketService");
 
 // SCAN ONE BILL
 const scanDiscoTicket = async (req, res) => {
-  const { url } = req.body;
+  const { ticketData } = req.body;
 
   //   validation
-  if (typeof url !== "string") {
+  if (typeof ticketData !== "string") {
     res.status(400).send({
       status: "FAILED",
       data: {
@@ -16,7 +16,7 @@ const scanDiscoTicket = async (req, res) => {
   }
 
   try {
-    const scannedTicket = await ticketService.scanNewDiscoTicket(url);
+    const scannedTicket = await ticketService.scanNewDiscoTicket(ticketData);
     res.status(201).send({ status: "OK", data: scannedTicket });
   } catch (error) {
     res

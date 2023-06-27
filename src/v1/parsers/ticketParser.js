@@ -2,20 +2,13 @@ const { JSDOM } = require("jsdom");
 const axios = require('axios');
 
 // SCAN ONE TICKET
-const scanNewDiscoTicket = async (ticketUrl) => {
-  const url = ticketUrl;
-
+const scanNewDiscoTicket = async (ticketData) => {
   console.log('Parser Reached...')
 
   try {
+
     const getData = async () => {
-      const response = await axios(url, {
-        method: "GET",
-      });
-
-      const data = await response.text();
-
-      const result = htmlToJavaScriptObject(data);
+      const result = htmlToJavaScriptObject(ticketData);
       return result;
     };
 
