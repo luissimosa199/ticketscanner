@@ -63,8 +63,10 @@ const scanNewDiscoTicket = async (ticketData) => {
         .textContent.trim();
       const totalAmount = parseNumberString(totalAmountString);
       const logoLink = document.querySelector("img").src;
-
-      return { ticketItems, totalAmount, logoLink };
+      const address = document.querySelector(".container .table-full-alt:first-child td:first-child").textContent.trim();
+      const date = document.querySelector(".container .table-full:last-child tr:nth-child(2) td:first-child").textContent.trim();
+  
+      return { ticketItems, totalAmount, logoLink, address, date };
     }
 
     const ticket = await getData();
