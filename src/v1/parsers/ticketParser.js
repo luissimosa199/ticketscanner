@@ -1,12 +1,11 @@
 const { JSDOM } = require("jsdom");
-const axios = require('axios');
+const axios = require("axios");
 
 // SCAN ONE TICKET
 const scanNewDiscoTicket = async (ticketData) => {
-  console.log('Parser Reached...')
+  console.log("Parser Reached...");
 
   try {
-
     const getData = async () => {
       const result = htmlToJavaScriptObject(ticketData);
       return result;
@@ -61,18 +60,39 @@ const scanNewDiscoTicket = async (ticketData) => {
       const totalAmountString = document
         .querySelector("td.total-import.right.bold")
         .textContent.trim();
+
       const totalAmount = parseNumberString(totalAmountString);
       const logoLink = document.querySelector("img").src;
-      const address = document.querySelector(".container .table-full-alt:first-child td:first-child").textContent.trim();
-      const date = document.querySelector(".container .table-full:last-child tr:nth-child(2) td:first-child").textContent.trim();
-  
-      return { ticketItems, totalAmount, logoLink, address, date };
+
+      const addressElement = document.querySelector(
+        ".company-header:nth-child(3)"
+      );
+      const address = addressElement.textContent
+        .trim()
+        .replace("Dom.Com. ", "");
+
+        const emisionElement = Array.from(
+          document.querySelectorAll("div")
+        ).find((element) => element.textContent.includes("Emisión:"));
+        const emisionText = emisionElement
+          ? emisionElement.textContent.trim()
+          : null;
+        const date = emisionText ? emisionText.split(":")[1].trim() : null;
+        
+
+      return {
+        ticketItems,
+        totalAmount,
+        logoLink,
+        address,
+        date
+      };
     }
 
     const ticket = await getData();
     return ticket;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     throw { status: error?.status || 500, message: error?.message || error };
   }
 };
